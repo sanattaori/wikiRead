@@ -11,8 +11,8 @@ class ArticleDetailActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_article_detail)
 
-        setSupportActionBar(toolbar);
-        supportActionBar!!.setDisplayHomeAsUpEnabled(true);
+        setSupportActionBar(toolbar)
+        supportActionBar!!.setDisplayHomeAsUpEnabled(true)
 
     }
 
