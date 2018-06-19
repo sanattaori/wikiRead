@@ -31,10 +31,10 @@ class SearchActivity : AppCompatActivity() {
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         menuInflater.inflate(R.menu.search_menu, menu)
 
-        val searchItem = menu!!.findItem(R.id.android_search)
+        var searchItem = menu!!.findItem(R.id.android_search)
 
-        val searchManager = getSystemService(Context.SEARCH_SERVICE) as SearchManager
-        val searchView = searchItem!!.actionView as SearchView
+        var searchManager = getSystemService(Context.SEARCH_SERVICE) as SearchManager
+        var searchView = searchItem!!.actionView as SearchView
         searchView.setSearchableInfo(searchManager.getSearchableInfo(componentName))
         searchView.setIconifiedByDefault(false)
         searchView.requestFocus()
