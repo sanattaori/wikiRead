@@ -15,6 +15,8 @@ import kotlinx.android.synthetic.main.fragment_explore.*
 import sanattaori.speedev.com.wikiread.R
 import sanattaori.speedev.com.wikiread.activities.SearchActivity
 import sanattaori.speedev.com.wikiread.adapter.ArticleCardRecyclerAdapter
+import sanattaori.speedev.com.wikiread.models.WikiResult
+import sanattaori.speedev.com.wikiread.providers.ArticleDataProvider
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -27,8 +29,13 @@ private const val ARG_PARAM2 = "param2"
  */
 class ExploreFragment : Fragment() {
 
+    private val articleProvider: ArticleDataProvider = ArticleDataProvider()
+
+
     var searchCardView: CardView? = null
     var exploreRecycler: RecyclerView? =null
+    var adapter: ArticleCardRecyclerAdapter = ArticleCardRecyclerAdapter()
+
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
@@ -45,9 +52,18 @@ class ExploreFragment : Fragment() {
         }
 
         exploreRecycler!!.layoutManager = LinearLayoutManager(context)
-        exploreRecycler!!.adapter = ArticleCardRecyclerAdapter()
+        exploreRecycler!!.adapter = adapter
 
         return view
+    }
+
+    private fun getRandomArticles() {
+        articleProvider.getRandom(15, { wikiResult ->
+            adapter.currentResults.clear();
+
+            adapter.currentResults.addAll(wikiResult.query!!.pages)
+            activity!!.runOnUiThread{adapter.notifyDataSetChanged() }
+        })
     }
 
 

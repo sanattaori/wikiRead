@@ -6,15 +6,21 @@ import android.view.ViewGroup
 import kotlinx.android.synthetic.main.fragment_explore.*
 import sanattaori.speedev.com.wikiread.R
 import sanattaori.speedev.com.wikiread.holders.CardHolder
+import sanattaori.speedev.com.wikiread.models.WikiPage
 
 class ArticleCardRecyclerAdapter() : RecyclerView.Adapter<CardHolder>(){
+
+    var currentResults: ArrayList<WikiPage> = ArrayList<WikiPage>()
+
     override fun getItemCount(): Int {
 
-        return 15 //temp
+        return currentResults.size
     }
 
     override fun onBindViewHolder(holder: CardHolder, position: Int) {
-        //update views
+        var page = currentResults[position]
+        //update view holder
+        holder?.updateWithPage(page)
 
     }
 
