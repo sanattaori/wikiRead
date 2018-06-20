@@ -10,7 +10,7 @@ import sanattaori.speedev.com.wikiread.models.WikiPage
 
 class ArticleCardRecyclerAdapter() : RecyclerView.Adapter<CardHolder>(){
 
-    var currentResults: ArrayList<WikiPage> = ArrayList<WikiPage>()
+    val currentResults: ArrayList<WikiPage> = ArrayList<WikiPage>()
 
     override fun getItemCount(): Int {
 
@@ -20,7 +20,7 @@ class ArticleCardRecyclerAdapter() : RecyclerView.Adapter<CardHolder>(){
     override fun onBindViewHolder(holder: CardHolder, position: Int) {
         var page = currentResults[position]
         //update view holder
-        holder?.updateWithPage(page)
+        holder.updateWithPage(page)
 
     }
 
